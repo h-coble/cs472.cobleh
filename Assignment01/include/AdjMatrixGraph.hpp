@@ -23,7 +23,7 @@ private:
     bool adjMatrix[maxSize][maxSize];
     NodeEntry *nodes[maxSize];
     stack<int> idStack;
-    vector<N>  nodeData[maxSize];
+    std::vector<N>  nodeData;
     int numNodes = 0;
     int findNodeInMatrix(N x){
         for (int j=0; j < numNodes; ++j)
@@ -133,8 +133,8 @@ public:
         ne->index = numNodes;
         nodes[numNodes] = ne;
 
-        nodeData[numNodes]= node;  //Vector to store node data, per instructions
-        idStack.push(ne->index);    //idStack for node id, per instructions
+        nodeData.push_back(node);       //Vector to store node data, per instructions
+        idStack.push(ne->index);        //idStack for node id, per instructions
         numNodes++;
 
     }

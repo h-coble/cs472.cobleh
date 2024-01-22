@@ -22,6 +22,9 @@ class AdjListGraph: public Graph<N>  {
 private:
     using Edges = list<pair<N, N>>;
     unordered_map<N, Edges > vertexMap;       //Already a map, not a vector?
+
+    //NEW
+    vector<N> nodeVec;
 public:
     // Default constuctor, create empty
     AdjListGraph() : Graph<N>() { };
@@ -85,6 +88,9 @@ public:
     virtual void addNode(N node){
         Edges * newEdgeList = new Edges();
         vertexMap[node] = *newEdgeList;
+
+        //NEW
+        nodeVec.push_back(node);
     }
     
     virtual void addEdge(N x, N y){
