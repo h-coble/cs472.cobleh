@@ -46,3 +46,4 @@ target_link_libraries(simplepath gtest_main)
 include(GoogleTest)
 gtest_discover_tests(simplepath)
 
+add_executable(makegraphtest makegraph.cpp)

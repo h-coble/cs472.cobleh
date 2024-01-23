@@ -4,7 +4,7 @@
 //  Purpose:
 //  Implementation of the adjacency list implementation of the graph ADT
 //
-
+#pragma once
 #include "Graph.hpp"
 #include <unordered_map>
 #include <vector>
@@ -14,11 +14,13 @@
 #include <stack>
 #include <queue>
 #include <functional>
+#include<map>
 
 using namespace std;
 
 template <class N>
-class AdjListGraph: public Graph<N>  {
+class AdjListGraph: public Graph<N>  
+{
 private:
     using Edges = list<pair<N, N>>;
     unordered_map<N, Edges > vertexMap;       //Already a map, not a vector?
@@ -32,7 +34,7 @@ public:
     // Get the vertex map from the Graph we're copying
     AdjListGraph(const AdjListGraph& other) : Graph<N>()
     {
-        vertexMap = other->vertexMap;
+        vertexMap = other.vertexMap;
     }
     
     // Don't forget to overload the assignment operator

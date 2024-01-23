@@ -19,7 +19,7 @@ private:
         N node;
         int index;
     };
-    const static int maxSize = 10;
+    const static int maxSize = 1025;
     bool adjMatrix[maxSize][maxSize];
     NodeEntry *nodes[maxSize];
     stack<int> idStack;
