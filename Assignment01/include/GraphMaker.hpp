@@ -2,8 +2,8 @@
 #include<cstdlib>
 #include "AdjMatrixGraph.hpp"
 #include "AdjListGraph.hpp"
-#include <time.h> 
 #include <vector>
+#include<random>
 using namespace std;
 
 class GraphMaker
@@ -15,7 +15,6 @@ public:
     // Default constuctor, create empty
     GraphMaker()
     {
-        srand(time(0));
     }
     ~GraphMaker()
     {
@@ -33,14 +32,24 @@ public:
         AdjMatrixGraph<int>* a = new AdjMatrixGraph<int>;
         for (int i =0;i<numberOfNodes;i++)
         {
-            a->addNode(numberOfNodes);
+            //Needed some help with [0,1) random
+            //https://www.geeksforgeeks.org/generate-random-double-numbers-in-cpp/
+
+            double lower_bound = 0;
+            double upper_bound = 1;
+            uniform_real_distribution<double> unif(lower_bound, upper_bound);
+            default_random_engine re;
+            double random_double;
+            
+            a->addNode(i);
             
             for(int j =0; j <i;j++)
             {
-                if(((double)rand()/0.99) > edgeProbability)
+                random_double = unif(re);
+                if (random_double > edgeProbability)
                 {
-                    a->addEdge(i,j);
-                }  
+                    a->addEdge(i, j);
+                }
             }      
         }
         m.push_back(a);
@@ -49,14 +58,21 @@ public:
 
     AdjListGraph<int> & makeAdjListGraph(int numberOfNodes, double edgeProbability)
     {
+        double lower_bound = 0;
+        double upper_bound = 1;
+        uniform_real_distribution<double> unif(lower_bound, upper_bound);
+        default_random_engine re;
+        double random_double;
+
         AdjListGraph<int>* a = new AdjListGraph<int>;
         for (int i =0;i<numberOfNodes;i++)
         {
-            a->addNode(numberOfNodes);
+            a->addNode(i);
             
             for(int j =0; j < i;j++)
             {
-                if(((double)rand()/0.99) > edgeProbability)
+                random_double = unif(re);
+                if( random_double > edgeProbability)
                 {
                     a->addEdge(i,j);
                 }  

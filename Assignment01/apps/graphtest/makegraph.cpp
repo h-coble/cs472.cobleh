@@ -20,17 +20,18 @@ double timeSearchList(int numNodes, double prob, GraphMaker maker)
 
 double timeSearchMatrix(int numNodes, double prob, GraphMaker maker)
 {
+    AdjMatrixGraph<int> a = maker.makeAdjMatrixGraph(numNodes, prob);
     auto start = std::chrono::steady_clock::now();
-    maker.makeAdjMatrixGraph(numNodes, prob).dfs(0, visit);
+    a.dfs(--numNodes, visit);
     auto end = std::chrono::steady_clock::now();
-    auto sec = end - start;
-    return sec.count() / pow(10,9);
+
+    return (end - start).count() / pow(10, 9);
 }
 
 int main()
 {
     GraphMaker maker;
-    const int numOfItems[5] = {2,8,64,256,1024};
+    const int numOfItems[5] = {2,8,64,256,1000};
     double m, l;
     for (int i = 0; i < 5; i++)
     {
@@ -38,11 +39,11 @@ int main()
         
         m = timeSearchMatrix(numOfItems[i], 0.5, maker);
         std::cout << std::endl;
-        l = timeSearchList(numOfItems[i], 0.5, maker);
+        //l = timeSearchList(numOfItems[i], 0.5, maker);
         std::cout << std::endl;
         std::cout << "\nTime of DFS for " << numOfItems[i] << " items in graph with probability of 0.5\n";
         std::cout << "AdjMatrix: " << setw(10) << std::right << m << "\n";
-        std::cout << "AdjList: " << setw(10) << std::right << l << "\n";
+        //std::cout << "AdjList: " << setw(10) << std::right << l << "\n";
         std::cout << std::endl;
     }
 	
