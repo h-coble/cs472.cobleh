@@ -1,29 +1,13 @@
-#include <string>   //stoi for 
-#include <bitset>   //bitset/bitstring for encoding/decoding
-#include <queue>    //Prioritty queue heap for tree building
-#include <map>      //Frequency table?
-#include <memory>   //Less pointer headaches
-class HuffmanTree
+#include "HuffmanTree.hpp"
+
+
+int main()
 {
-    private:
-        node root;
-    public:
-        HuffmanTree(node r): root(r) {};
-};
+    //std::map <char , int> a = buildFreqTable("racecar.txt");
 
-struct node
-{
-    int freq = 0;
-    char chracter = ' ';    //Unsigned?
+    auto ht = HuffmanTree("racecar.txt");
+    ht.encodeFile();
+    return  0;
 
-    //weak_ptr?
-    std::shared_ptr<node> left = nullptr;
-    std::shared_ptr<node> right = nullptr;
-    std::shared_ptr<node> parent = nullptr;
+}
 
-    //Overload for priority queue
-    bool operator< (node rhs)
-    {
-        return freq > rhs.freq;     //> to heapify
-    }
-};
